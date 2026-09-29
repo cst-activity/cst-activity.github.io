@@ -6,7 +6,7 @@
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
 </head>
 <body>
-<title>Three Tools, One Poster</title>
+<title>CST Activity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -116,7 +116,6 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
 
 <div class="wrap">
   <header style="display:grid;gap:10px">
-    <h1>Three Tools, One Poster</h1>
     <ol class="run">
       <li><span class="n">1</span><b>Make</b><span class="m">7 min</span><span>Your assigned tool. Brief A, then Brief B.</span></li>
       <li><span class="n">2</span><b>Compare</b><span class="m">3 min</span><span>Pair with a group that used another tool. Try theirs.</span></li>
@@ -130,14 +129,14 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
   </div>
 
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" id="t-presto" data-tab="presto" aria-controls="presto"><span class="l">A</span>Presto</button>
-    <button class="tab" role="tab" id="t-markup" data-tab="markup" aria-controls="markup"><span class="l">B</span>Markup</button>
-    <button class="tab" role="tab" id="t-workbench" data-tab="workbench" aria-controls="workbench"><span class="l">C</span>Workbench</button>
-    <button class="tab" role="tab" id="t-discuss" data-tab="discuss" aria-controls="discuss">Discuss</button>
+    <button class="tab" role="tab" id="t-presto" data-tab="presto" aria-controls="panel-presto"><span class="l">A</span>Presto</button>
+    <button class="tab" role="tab" id="t-markup" data-tab="markup" aria-controls="panel-markup"><span class="l">B</span>Markup</button>
+    <button class="tab" role="tab" id="t-workbench" data-tab="workbench" aria-controls="panel-workbench"><span class="l">C</span>Workbench</button>
+    <button class="tab" role="tab" id="t-discuss" data-tab="discuss" aria-controls="panel-discuss">Discuss</button>
   </nav>
 
   <!-- A: Presto -->
-  <section id="presto" role="tabpanel" aria-labelledby="t-presto" hidden>
+  <section id="panel-presto" role="tabpanel" aria-labelledby="t-presto" hidden>
     <div class="bench b-presto">
       <div class="col">
         <div class="field"><span class="label">Template</span><div class="seg" id="p-tpl"></div></div>
@@ -155,7 +154,7 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
   </section>
 
   <!-- B: Markup -->
-  <section id="markup" role="tabpanel" aria-labelledby="t-markup" hidden>
+  <section id="panel-markup" role="tabpanel" aria-labelledby="t-markup" hidden>
     <div class="bench b-markup">
       <div class="col">
         <div class="row"><span class="label">SVG code</span><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank" rel="noopener">SVG element reference</a></div>
@@ -168,7 +167,7 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
   </section>
 
   <!-- C: Workbench -->
-  <section id="workbench" role="tabpanel" aria-labelledby="t-workbench" hidden>
+  <section id="panel-workbench" role="tabpanel" aria-labelledby="t-workbench" hidden>
     <div class="toolbar">
       <span class="label">Add</span>
       <button class="btn sm" data-add="rect">Rect</button>
@@ -203,7 +202,7 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
   </section>
 
   <!-- Discuss -->
-  <section id="discuss" role="tabpanel" aria-labelledby="t-discuss" hidden>
+  <section id="panel-discuss" role="tabpanel" aria-labelledby="t-discuss" hidden>
     <ol class="qs">
       <li><span class="tag">Normative ground</span><p>Line up the Brief A posters by tool. What did each tool make easy, and what did it treat as a “good” poster? Who decided that?</p></li>
       <li><span class="tag">Appropriation</span><p>Brief B: which tool let you break its rules, and what did you have to do? Did the friction help or get in the way?</p></li>
@@ -249,7 +248,7 @@ function showTab(name) {
   tabs.forEach(t => {
     const on = t.dataset.tab === name;
     t.setAttribute("aria-selected", on);
-    $(t.dataset.tab).hidden = !on;
+    $("panel-" + t.dataset.tab).hidden = !on;
   });
   if (name === "workbench") wbRenderStage();
 }
@@ -559,7 +558,7 @@ $("w-rep").addEventListener("click", () => {
   shapes.splice(sel + 1, 0, ...copies); wbAll(); commit("Repeat ×" + n);
 });
 document.addEventListener("keydown", e => {
-  if ($("workbench").hidden || sel < 0) return;
+  if ($("panel-workbench").hidden || sel < 0) return;
   if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
   if (e.key === "Delete" || e.key === "Backspace") { e.preventDefault(); $("w-del").click(); }
 });
