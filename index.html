@@ -105,12 +105,6 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
 .hist button[aria-current="true"]{border-color:var(--accent);color:var(--accent)}
 .hist img{display:block;width:100%;aspect-ratio:3/4}
 
-/* Discuss */
-.qs{margin:0;padding:0;list-style:none;display:grid;gap:18px;max-width:72ch;counter-reset:q}
-.qs li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;counter-increment:q}
-.qs li::before{content:counter(q);grid-row:1 / span 2;font:800 1.5rem/1 var(--f-ui);color:var(--accent)}
-.qs .tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.qs p{margin:0;font-size:1.05rem;text-wrap:pretty}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -119,7 +113,7 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
     <ol class="run">
       <li><span class="n">1</span><b>Make</b><span class="m">7 min</span><span>Your assigned tool. Brief A, then Brief B.</span></li>
       <li><span class="n">2</span><b>Compare</b><span class="m">3 min</span><span>Pair with a group that used another tool. Try theirs.</span></li>
-      <li><span class="n">3</span><b>Discuss</b><span class="m">5 min</span><span>Discuss tab.</span></li>
+      <li><span class="n">3</span><b>Discuss</b><span class="m">5 min</span></li>
     </ol>
   </header>
 
@@ -132,7 +126,6 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
     <button class="tab" role="tab" id="t-presto" data-tab="presto" aria-controls="panel-presto"><span class="l">A</span>Presto</button>
     <button class="tab" role="tab" id="t-markup" data-tab="markup" aria-controls="panel-markup"><span class="l">B</span>Markup</button>
     <button class="tab" role="tab" id="t-workbench" data-tab="workbench" aria-controls="panel-workbench"><span class="l">C</span>Workbench</button>
-    <button class="tab" role="tab" id="t-discuss" data-tab="discuss" aria-controls="panel-discuss">Discuss</button>
   </nav>
 
   <!-- A: Presto -->
@@ -201,15 +194,6 @@ input[type=color]{width:36px;height:34px;padding:2px;border:1px solid var(--line
     </div>
   </section>
 
-  <!-- Discuss -->
-  <section id="panel-discuss" role="tabpanel" aria-labelledby="t-discuss" hidden>
-    <ol class="qs">
-      <li><span class="tag">Normative ground</span><p>Line up the Brief A posters by tool. What did each tool make easy, and what did it treat as a “good” poster? Who decided that?</p></li>
-      <li><span class="tag">Appropriation</span><p>Brief B: which tool let you break its rules, and what did you have to do? Did the friction help or get in the way?</p></li>
-      <li><span class="tag">Vertical and horizontal movement</span><p>After Repeat, Workbench’s copies can’t be edited as a set. Where else could you move down a level of abstraction but not back up? Move a poster between tools with Copy SVG. What survived?</p></li>
-      <li><span class="tag">Shneiderman vs. Li et al.</span><p>Rate each tool on low threshold, high ceiling, and wide walls. Could one tool score well on all three without imposing its own idea of good work?</p></li>
-    </ol>
-  </section>
 </div>
 
 <script>
